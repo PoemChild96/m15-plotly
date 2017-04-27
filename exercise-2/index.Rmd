@@ -1,0 +1,23 @@
+# Average Delay For Different Airlines 
+
+Graph below shows the average arrival delay for different airlines that flew from NYC in 2013. 
+```{r echo = FALSE, message = FALSE} 
+library(plotly)
+library(dplyr)
+
+flights <- nycflights13::flights
+data <- flights %>% group_by(carrier) %>% summarize(ave.delay = mean(arr_delay, na.rm = TRUE)) %>% select(carrier, ave.delay)
+
+plot_ly(x = data$carrier, y = data$ave.delay, type = "bar", 
+        marker = list(color = 'rgb(158,202,225)',
+                      line = list(color = 'rgb(8,48,107)', width = 1.5))) %>%
+  layout(title = "Ave. Delays",
+         xaxis = list(title = "Airlines"),
+         yaxis = list(title = "Delay (min)"),
+         annotations = list(x = data$carrier, y = round(data$ave.delay), text = round(data$ave.delay),
+                            xanchor = 'center', yanchor = 'bottom',
+                            showarrow = FALSE)
+       
+        )
+
+```
