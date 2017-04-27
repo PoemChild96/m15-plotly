@@ -1,0 +1,11 @@
+# Mpg vs. Cyl 
+## Below is a bar graph comparing mpg(x) and cyl(y) in mtcars data. 
+
+```{r echo = FALSE, message = FALSE}
+library(plotly)
+plot_ly(x = mtcars$mpg, y = mtcars$cyl, type = "bar")
+```
+
+
+
+
